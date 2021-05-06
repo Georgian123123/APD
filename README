@@ -1,0 +1,30 @@
+Tema 3 APD
+===============================================================================
+Procesator de text distribuit.
+===============================================================================
+Modelul folosit pentru rezolvarea acestei teme a fost MPI cu threaduri.
+===============================================================================
+Tema se imparte in 2 parti : - Masterul care citeste datele de la intrare si
+workerii care prelucreaza datele primite de la master si trimite inapoi la
+master care afiseaza.
+===============================================================================
+Implementare: Programul porneste 5 procese, unul dintre ele va fi nodul master,
+iar celelalte 4 vor fi workerii.
+Masterul porneste la randul lui 4 threaduri care citeste din fisier.
+Fiecare thread se ocupa de un tip de paragraf. De exemplu, thread-ul 0 citeste
+doar paragrafele horror, si va sarii peste paragrafele care nu il intereseaza.
+Dupa ce citeste un paragraf acesta trimite catre workerul specific paragrafului
+pe care il trimite. Apoi thread-ul intra intr-o stare in care asteapta raspuns
+de la worker-ul la care a trimis mesajul.
+Workerul primeste mesajul, si porneste X thread-uri, X care depinde de numarul
+de linii al paragrafului. workerul sparge paragraful in chunkuri de 20 de linii
+si le adauga intr-un vector. Porneste cele X thread-uri care vor modifica acele
+chunkuri in functie de ce fel de worker este. Adica workerul horror va modifica
+paragrafele dupa regulile descrise la horror. Dupa ce se termina thread-urile
+nodul worker va asambla chunkurile si va tirmite mesajul intreg catre master.
+Nodul master foloseste conceptul de sliding window. Dupa ce priemste mesajul,
+il retine intr-o structura de date de tipul map, iar el va avea un contor cu 
+care va stii al catelea mesaj trebuie sa il scrie in fisier. Cat timp exista
+acel element caruia ii corespunde contorul, il va lua din map, va scrie in
+fisier, il va sterge, si va creste contorul deoarece  se va muta la urmatorul
+mesaj pe care trebuie sa il afiseze.
