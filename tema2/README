@@ -1,0 +1,91 @@
+===============================================================================
+Comana Marian Georgian 321CA @georgiancomana1119@gmail.com
+===============================================================================
+Ideea temei:
+            -> Dirijarea unei intersectii in functie de anumite conditii impuse
+                in cerinta
+===============================================================================
+Cerinta 1:
+            -> Masinile se afla la un semafor si vor trebui sa astepte un anumit
+                timp. Pentru acest lucru am folosit functia sleep().
+===============================================================================
+Cerinta 2:
+            -> In aceasta cerinta masinile se afla oricate masini dar trebuie sa
+                dau drumul la un anumit numar de masini in intersectie. Dupa
+                un anumit timp vor putea iesi din intersectie. Pentru acest task
+                am folosit un semafor care are N tokens si
+                functia sleep(). Dupa ce intra o masina in intersectie, semnali
+                zeaza acest lucru prin luarea acelui token si, implicit dupa ce
+                iese il da inapoi.
+===============================================================================
+Cerinta 3:
+            -> Acest task ne propune simularea unui sens giratoriu in care poate
+                intra o masina din fiecare directie la un moment de timp.
+                Cand una e in intersectie dintr-o directie, nu mai poate intra
+                alta din acea directie. Pentru acest task am folosit un vector
+                de semafoare care au un token, si reprezinta singura posibilitate
+                a unei masini de a intra dintr-o directie anume.
+===============================================================================
+Cerinta 4:
+            -> In acest task vorbim exact de ideea cerintei de mai sus, doar ca
+                dintr-o directie nu poate intra doar o masina, ci pot intra mai
+                multe, un anumit numar x citit.
+                Pentru acest task am folosit aceeasi idee ca mai sus doar ca
+                am folosit semaphoare cu X tokens.
+===============================================================================
+Cerinta 5
+            -> Aceasta cerinta generalizeaza ultimele doua cerinte. Daca in
+                cerintele de mai sus am avut cateva note precum faptul ca masi-
+                nile trebuie sa ajunga toate la intersectie inainte sa se intre
+                in intersectie, aici nu se pune aceasta problema.
+                Masinile vin, intra in intersectie intersectie, acelasi semafor
+                cu acelasi nr de tokens, se strang toate la iesire(pentru acest)
+                lucru am folosit o bariera, asteapta un numar de secunde si ies
+                din intersectie.
+===============================================================================
+Cerinta 6:
+            -> Aceasta cerinta simuleaza o intersectie cu un drum cu prioritate
+                si unul fara prioritate. Masinile fara prioritate vor trece in
+                intersectie doar daca nu exista vreo masina cu prioritate in
+                intersectie. Masinile cu prioritate trec instant. Pentru acest
+                lucru am folosit un semafor cu N tokens, unde N este numarul
+                de masini cu prioritate mai mare decat 1. Ideea este aceasta, 
+                daca in intersectie intra o masina cu prioritate, aceasta ia un
+                token, iar numarul de tokenuri devine N - 1. Daca o masina fara
+                prioritate incearca sa intre ea va incerca sa ia cele N tokens,
+                iar acest lucru este imposibil deoarece numarul pe care il avem
+                este de N - 1. Cand masina cu prioritate iese din intersectie
+                vom avea inapoi acel token si semaforul va avea cele N tokens.
+                Atunci vom stii ca nu exista vreo masina cu prioritate in inter-
+                sectie si va putea trece o masina fara prioritate.
+===============================================================================
+Cerinta 7:
+            -> Aceasta cerinta presupune o trecere semaforizata pentru pietoni.
+                Presupunem M ca fiind numarul de pietoni. Daca la trecere nu
+                s-au strans cei M pietoni, masinile pot trece(au verde).
+                pentru acest task am folosit o variabila care imi zice daca
+                masinile pot trece sau nu, si o bariera care are ca passing
+                number numarul de masini.
+                Daca masinile pot trece inseamna ca au verde si pot trece,
+                punem o bariera ca sa astepte toate masinile inainte de
+                trecerea de pietoni si incrementam pietonii.
+===============================================================================
+Cerinta 8:
+            -> Acest task ne impune sa avem o singura banda de mers odata,
+                cealalta sta in standby. Ideea de baza consta in folosirea a doua
+                semafoare, si doua bariere. Cand sensul 0 de mers este pornit,
+                masinile se strang toate in coada, si trec pe rand. In acest
+                timp masinile de pe sensul celalalt asteapta. In momentul cand
+                masinile au trecut, se da un sistem de notify si le anunta pe
+                celelalte ca au trecut.
+===============================================================================
+Cerinta 10:
+            -> Taskul ne impune ca masiniel sa astepte la bariera pana cand
+                trece trenul. asta implica faptul ca sa punem o bariera sa
+                oprim toate threadurile, folosim sistem bariera in bariera
+                sa ne asiguram ca toate masinile asteapta si sa putem afisa ca
+                trenul trece.
+                Cat timp masina nu e in varful cozii, stam intr-o stare de busy
+                waiting, iar cand masina curenta este in varful cozii, o scoatem,
+                si notificam pe ceilalti.
+===============================================================================
